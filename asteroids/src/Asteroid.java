@@ -2,7 +2,7 @@ import javafx.scene.image.Image;
 
 public class Asteroid extends Actor{
 	
-	double health;
+	int health;
 	int dx;
 	int dy;
 	
@@ -32,6 +32,18 @@ public class Asteroid extends Actor{
 			dy = -dy;
 		}
 		
+		setRotate(getRotate() + 5);
+	}
+	
+	public void setHealth(int health) {
+		this.health = health;
+		if (health == 0) {
+			getWorld().remove(this);
+		}
+	}
+	
+	public int getHealth() {
+		return health;
 	}
 
 }
