@@ -18,6 +18,7 @@ public class Spaceship extends Actor{
 		
 		/* if spaceship runs into an asteroid, loses a life */
 		
+		
 		/* if spaceship runs into a powerup, set the is powerup 
 		 *  boolean to true and then set a duration and apply
 		 *  the effect, based on static variables in Powerup,
