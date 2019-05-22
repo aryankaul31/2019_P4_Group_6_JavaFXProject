@@ -32,12 +32,17 @@ public class Spaceship extends Actor {
 		
 		// handling all types of collisions
 		handlePowerup();
-		handleAsteroidCollision();
-		handleSpaceshipCollision();
+		handleCollisions();
 		
 		updatePosition();
 		
 	}
+
+	public void handleCollisions() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	public void handleMovement() {
 		// rotation
@@ -73,7 +78,8 @@ public class Spaceship extends Actor {
 		}
 		
 		if (getWorld().isKeyDown(KeyCode.SPACE)) {
-			// shoot laser things
+			Laser l = new Laser(getX(), getY(), getRotate());
+			getWorld().add(l);
 		}
 
 	}
@@ -100,14 +106,5 @@ public class Spaceship extends Actor {
 		 * the player for that duration.
 		 */
 
-	}
-
-	public void handleAsteroidCollision() {
-		/* if spaceship runs into an asteroid, loses a life */
-	}
-
-	public void handleSpaceshipCollision() {
-		// TODO Auto-generated method stub
-		
 	}
 }
