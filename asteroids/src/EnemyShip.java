@@ -56,7 +56,6 @@ public class EnemyShip extends Spaceship {
 		getWorld().add(l);
 	}
 	
-	@Override
 	public void handleCollisions() {
 		
 	}
