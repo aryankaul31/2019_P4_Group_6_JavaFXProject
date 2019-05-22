@@ -3,8 +3,7 @@ import javafx.scene.image.Image;
 public class PowerUp extends Actor{
 	public static final int NEGATIVE_HEALTH_POWERUP = 0;
 	public static final int HEALTH_POWERUP = 1;
-	public static final int DAMAGE_POWERUP = 2;
-	public static final int SPEED_POWERUP = 3;
+	public static final int SPEED_POWERUP = 2;
 	
 	int state;
 	

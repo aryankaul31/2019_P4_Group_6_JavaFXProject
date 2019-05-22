@@ -10,6 +10,7 @@ public class Game extends Application{
 	
 	GameWorld world;
 	
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -21,18 +22,15 @@ public class Game extends Application{
 		BorderPane root = new BorderPane();
 		
 		world = new GameWorld();
-		world.setPrefSize(1000, 1000);
+		world.setPrefSize(500, 500);
 		root.setCenter(world);
 		Scene scene = new Scene(root);
 		
+		Spaceship ship = new Spaceship(5, 3);
+		ship.setX(250);
+		ship.setY(400);
+		world.add(ship);
 		
-		world.setOnMouseMoved(new EventHandler<MouseEvent>() {
-			
-			public void handle(MouseEvent event) {
-				
-				
-			}
-		});
 		// TODO Auto-generated method stub
 		world.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
