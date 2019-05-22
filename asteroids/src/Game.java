@@ -31,6 +31,14 @@ public class Game extends Application{
 		ship.setY(400);
 		world.add(ship);
 		
+		for (int i = 0 ; i < 3 ; i ++) {
+			EnemyShip x = new EnemyShip(3, 5);
+			x.setX(100);
+			x.setY(100);
+			world.add(x);
+			
+		}
+		
 		// TODO Auto-generated method stub
 		world.setOnKeyPressed(new EventHandler<KeyEvent>() {
 

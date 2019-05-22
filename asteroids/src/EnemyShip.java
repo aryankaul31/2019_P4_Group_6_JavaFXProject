@@ -4,31 +4,36 @@ import javafx.scene.image.Image;
 
 public class EnemyShip extends Spaceship {
 
-	public EnemyShip(int h, int max, boolean isPlayer) {
+	int total = 0;
+	double dx;
+	double dy;
+	public EnemyShip(int h, int max) {
 		super(h, max);
-		Image image = new Image("file:spaceship.png");
 		
-		setFitWidth(25);
+		Image image = new Image("file:spaceship.jpg");
+		setImage(image);
+		setFitWidth(20);
 		setPreserveRatio(true);
-		
-		speed = 2;
+
+		Random rand = new Random();
+		dx = rand.nextDouble() * 10 - 5;
+		dy = rand.nextDouble() * 10 - 5;
 	}
 	
 	@Override
 	public void act() {
 		handleMovement();
-		shoot();
 		handleCollisions();
 	}
 	
 	@Override
 	public void handleMovement() {
+		total ++;
 		// randomize the movement
 		Random rand = new Random();
-		double dx = rand.nextDouble() * 5 + 1;
-		double dy = rand.nextDouble() * 5 + 1;
-		setX(getX() + dx);
-		setY(getY() + dy);
+		double d = rand.nextDouble() * 2 - 1;
+		setX(getX() + dx + d);
+		setY(getY() + dy + d);
 		
 		// edge loop!!
 		if (getY() + getWidth() < 0) {
@@ -44,14 +49,16 @@ public class EnemyShip extends Spaceship {
 			setY(1.0);
 		}
 		
-		shoot();
+		if (total % 25 == 0) {
+			shoot();
+		}
 	}
 	
 	private void shoot() {
 		// shoot towards the player
-		Spaceship x = (Spaceship) getWorld().getObjects(Spaceship.class);
+		Spaceship x = (Spaceship) getWorld().getObjects(Spaceship.class).get(0);
 		double slope = (x.getY() - getY()) / (x.getX() - getX());
-		double theta = Math.atan(slope) + 90;
+		double theta = Math.atan(slope);
 		Laser l = new Laser(getX(), getY(), theta);
 		getWorld().add(l);
 	}

@@ -9,12 +9,16 @@ public class Laser extends Actor {
 	
 	public Laser(double d, double e, double r) {
 		setImage(new Image("file:laser.png"));
-		this.y = e;
+		setFitWidth(15);
+		setPreserveRatio(true);
+		
 		setX(d);
-		this.x = d;
 		setY(e);
-		rotation = r;
 		setRotate(r);
+
+		this.y = e;
+		this.x = d;
+		rotation = r;
 	}
 	@Override
 	public void act() {
@@ -23,14 +27,14 @@ public class Laser extends Actor {
 		// add to total distance.
 		// if total distance > a threshhold, then delete this
 		
-		double dx = Math.cos(Math.toRadians(getRotate() + 90)) * 6;
-		double dy = Math.sin(Math.toRadians(getRotate() + 90)) * 6;
+		double dx = Math.cos(Math.toRadians(getRotate() + 90)) * 3;
+		double dy = Math.sin(Math.toRadians(getRotate() + 90)) * 3;
 		
 		setY(getY() + dy);
 		setX(getX() + dx);
 		
 		totalDistance ++;
-		if (totalDistance > 10) {
+		if (totalDistance > 50) {
 			getWorld().remove(this);
 		}
 		

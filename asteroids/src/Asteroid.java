@@ -9,6 +9,8 @@ public class Asteroid extends Actor{
 	public Asteroid(int x, int y) {
 		Image image = new Image("file:asteroid.png");
 		setImage(image);
+		setFitWidth(50);
+		setPreserveRatio(true);
 	
 		dx = x;
 		dy = y;
