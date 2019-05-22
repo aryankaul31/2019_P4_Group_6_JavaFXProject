@@ -57,9 +57,9 @@ public class EnemyShip extends Spaceship {
 	private void shoot() {
 		// shoot towards the player
 		Spaceship x = (Spaceship) getWorld().getObjects(Spaceship.class).get(0);
-		double slope = (x.getY() - getY()) / (x.getX() - getX());
-		double theta = Math.atan(slope);
-		Laser l = new Laser(getX(), getY(), theta);
+		double theta = Math.atan2(getY() - x.getY(), getX() - x.getX());
+		Laser l = new Laser(getX(), getY(), Math.toDegrees(theta) + 90);
+		System.out.println("Theta : " + Math.toDegrees(theta));
 		getWorld().add(l);
 	}
 	
