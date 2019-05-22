@@ -3,7 +3,7 @@ import javafx.scene.input.KeyCode;
 
 public class Spaceship extends Actor {
 
-	int health;
+	int lives;
 	int maxSpeed;
 	double speed;
 	boolean isPowerUp;
@@ -20,7 +20,7 @@ public class Spaceship extends Actor {
 		setFitWidth(25);
 		setPreserveRatio(true);
 		
-		health = h;
+		lives = h;
 		maxSpeed = max;
 		speed = 0;
 	}
@@ -92,6 +92,19 @@ public class Spaceship extends Actor {
 		setY(getY() - dy);
 		
 		// still have to do edgelooping
+		if (getY() + getWidth() < 0) {
+			setY(getWorld().getHeight() - getWidth() - 1);
+		}
+		if (getX() + getWidth()< 0) {
+			setX(getWorld().getWidth() - getWidth() - 1);
+		}
+		if (getX() > getWorld().getWidth()) {
+			setX(1.0);
+		}
+		if (getY()  > getWorld().getHeight()) {
+			setY(1.0);
+		}
+
 	}
 
 	public void handlePowerup() {
@@ -100,15 +113,25 @@ public class Spaceship extends Actor {
 		 * set a duration and apply the effect, based on static variables in Powerup, to
 		 * the player for that duration.
 		 */
+		if(getOneIntersectingObject(PowerUp.class) != null) {
+			isPowerUp = true;
+			duration = 200;
+			//not done
+		}
 
 	}
 
 	public void handleAsteroidCollision() {
 		/* if spaceship runs into an asteroid, loses a life */
+		if(getOneIntersectingObject(Asteroid.class) != null) {
+			lives--;
+		}
 	}
 
 	public void handleSpaceshipCollision() {
 		// TODO Auto-generated method stub
-		
+		if(getOneIntersectingObject(Asteroid.class) != null) {
+			lives--;
+		}
 	}
 }
