@@ -1,3 +1,4 @@
+import javafx.scene.image.Image;
 
 public class Laser extends Actor {
 
@@ -7,6 +8,7 @@ public class Laser extends Actor {
 	double totalDistance;
 	
 	public Laser(double d, double e, double r) {
+		setImage(new Image("file:laser.png"));
 		this.y = e;
 		setX(d);
 		this.x = d;
