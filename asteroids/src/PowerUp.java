@@ -16,11 +16,22 @@ public class PowerUp extends Actor{
 		 * powerup0, powerup1.png, etc in the file.
 		 * Pick the proper image and set the image.
 		 */
+		Image[] y = new Image[3];
+		y[0] = new Image("file:negativeHealth.jpg");
+		y[1] = new Image("file:healthPowerup.png");
+		y[2] = new Image("file:speedUpSprite.png");
+		
+		setImage(y[state]);
+		
 	}
 
 	@Override
 	public void act() {
 		// do nothing but slowly rotate
-		setRotate(getRotate() + 3);
+		setRotate(getRotate() + 2);
+	}
+	
+	public int getState() {
+		return state;
 	}
 }
