@@ -25,7 +25,7 @@ public abstract class World extends Pane {
 						((Actor) getChildren().get(i)).act();
 					}
 				}
-			}
+			}  
 
 		};
 	}

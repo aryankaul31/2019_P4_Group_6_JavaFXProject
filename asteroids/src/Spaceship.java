@@ -53,7 +53,6 @@ public class Spaceship extends Actor {
 			setRotate(getRotate() - 360);
 		}
 		
-		
 		// speed changing
 		if (getWorld().isKeyDown(KeyCode.UP)) {
 			// Dynamically increasing speed
@@ -75,6 +74,8 @@ public class Spaceship extends Actor {
 		if (getWorld().isKeyDown(KeyCode.SPACE)) {
 			// shoot laser things
 		}
+
+
 
 	}
 

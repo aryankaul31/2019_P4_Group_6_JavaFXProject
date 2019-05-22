@@ -20,19 +20,20 @@ public class Asteroid extends Actor{
 		move(dx, dy);
 		
 		if (getY() < 0) {
-			dy = -dy;
+			setY(getWorld().getHeight());
 		}
 		if (getX() < 0) {
-			dx = -dx;
+			setX(getWorld().getWidth());
 		}
 		if (getX() + getWidth() > getWorld().getWidth()) {
-			dx = -dx;
+			setX(0.0);
 		}
 		if (getY() + getHeight() > getWorld().getHeight()) {
-			dy = -dy;
+			setY(0.0);
 		}
 		
 		setRotate(getRotate() + 5);
+
 	}
 	
 	public void setHealth(int health) {
