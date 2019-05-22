@@ -72,7 +72,8 @@ public class Spaceship extends Actor {
 		}
 		
 		if (getWorld().isKeyDown(KeyCode.SPACE)) {
-			// shoot laser things
+			Laser l = new Laser(getX(), getY(), getRotate() + 180);
+			getWorld().add(l);
 		}
 
 
