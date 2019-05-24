@@ -1,8 +1,14 @@
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -20,6 +26,10 @@ public class Game extends Application{
 		
 		primaryStage.setTitle("Asteroids");
 		BorderPane root = new BorderPane();
+		Image png = new Image("file:///Users/rahulgrover/Desktop/2019_P4_Group_6_JavaFXProject/asteroids/space.jpg");
+		BackgroundImage image = new BackgroundImage(png, BackgroundRepeat.ROUND, BackgroundRepeat.ROUND, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+		Background ground = new Background(image);
+		root.setBackground(ground);
 		
 		world = new GameWorld();
 		world.setPrefSize(500, 500);
