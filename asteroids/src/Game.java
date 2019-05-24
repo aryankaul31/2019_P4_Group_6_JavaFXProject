@@ -26,7 +26,7 @@ public class Game extends Application{
 		
 		primaryStage.setTitle("Asteroids");
 		BorderPane root = new BorderPane();
-		Image png = new Image("file:///Users/rahulgrover/Desktop/2019_P4_Group_6_JavaFXProject/asteroids/space.jpg");
+		Image png = new Image("file:space.jpg");
 		BackgroundImage image = new BackgroundImage(png, BackgroundRepeat.ROUND, BackgroundRepeat.ROUND, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		Background ground = new Background(image);
 		root.setBackground(ground);
