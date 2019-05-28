@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -26,19 +27,22 @@ public class Game extends Application{
 		world.setPrefSize(500, 500);
 		root.setCenter(world);
 		Scene scene = new Scene(root);
-		
+		HBox hb = new HBox();
+		Label label = new Label("Score: ");
+		hb.getChildren().add(label);
+		root.setTop(hb);
 		Spaceship ship = new Spaceship(5, 3);
 		ship.setX(250);
 		ship.setY(400);
 		world.add(ship);
 		
-//		for (int i = 0 ; i < 3 ; i ++) {
-//			EnemyShip x = new EnemyShip(3, 5);
-//			x.setX(100);
-//			x.setY(100);
-//			world.add(x);
-//			
-//		}
+		for (int i = 0 ; i < 1 ; i ++) {
+			EnemyShip x = new EnemyShip(3, 5);
+			x.setX(100);
+			x.setY(100);
+			world.add(x);
+			
+		}
 		
 		// TODO Auto-generated method stub
 		world.setOnKeyPressed(new EventHandler<KeyEvent>() {
