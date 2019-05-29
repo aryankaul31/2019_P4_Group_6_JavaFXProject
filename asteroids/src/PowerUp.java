@@ -17,9 +17,9 @@ public class PowerUp extends Actor{
 		 * Pick the proper image and set the image.
 		 */
 		Image[] y = new Image[3];
-		y[0] = new Image("file:negativeHealth.jpg");
-		y[1] = new Image("file:healthPowerup.png");
-		y[2] = new Image("file:speedUpSprite.png");
+		y[0] = new Image("file:Images/negativeHealth.jpg");
+		y[1] = new Image("file:Images/healthPowerup.png");
+		y[2] = new Image("file:Images/speedUpSprite.png");
 		
 		setImage(y[state]);
 		

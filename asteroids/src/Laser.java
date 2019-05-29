@@ -8,7 +8,7 @@ public class Laser extends Actor {
 	double totalDistance;
 	
 	public Laser(double d, double e, double r) {
-		setImage(new Image("file:laser.png"));
+		setImage(new Image("file:Images/laser.png"));
 		setFitWidth(15);
 		setPreserveRatio(true);
 		

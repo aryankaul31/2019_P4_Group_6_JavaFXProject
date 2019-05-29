@@ -10,7 +10,7 @@ public class EnemyShip extends Spaceship {
 	public EnemyShip(int h, int max) {
 		super(h, max);
 		
-		Image image = new Image("file:spaceship.jpg");
+		Image image = new Image("file:Images/spaceship.jpg");
 		setImage(image);
 		setFitWidth(20);
 		setPreserveRatio(true);

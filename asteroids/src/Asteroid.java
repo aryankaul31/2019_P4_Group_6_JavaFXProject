@@ -7,7 +7,7 @@ public class Asteroid extends Actor{
 	int dy;
 	
 	public Asteroid(int x, int y) {
-		Image image = new Image("file:asteroid.png");
+		Image image = new Image("file:Images/asteroid.png");
 		setImage(image);
 		setFitWidth(50);
 		setPreserveRatio(true);

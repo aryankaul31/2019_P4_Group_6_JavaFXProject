@@ -14,7 +14,7 @@ public class Spaceship extends Actor {
 	 */
 
 	public Spaceship(int h, int max) {
-		Image image = new Image("file:player.png");
+		Image image = new Image("file:Images/player.png");
 
 		setImage(image);
 		setFitWidth(25);

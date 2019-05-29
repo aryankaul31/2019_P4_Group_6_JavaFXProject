@@ -28,7 +28,7 @@ public class Game extends Application{
 		
 		primaryStage.setTitle("Asteroids");
 		BorderPane root = new BorderPane();
-		Image png = new Image("file:space.jpg");
+		Image png = new Image("file:Images/space.jpg");
 		BackgroundImage image = new BackgroundImage(png, BackgroundRepeat.ROUND, BackgroundRepeat.ROUND, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		Background ground = new Background(image);
 		root.setBackground(ground);
@@ -39,6 +39,7 @@ public class Game extends Application{
 		Scene scene = new Scene(root);
 		HBox hb = new HBox();
 		Label label = new Label("Score: ");
+		
 		hb.getChildren().add(label);
 		root.setTop(hb);
 		Spaceship ship = new Spaceship(5, 3);
