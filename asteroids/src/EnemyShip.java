@@ -62,11 +62,13 @@ public class EnemyShip extends Spaceship {
 		System.out.println("Theta : " + Math.toDegrees(theta));
 		getWorld().add(l);
 	}
-	
+//	 if (total % 25 == 0 then getX) {
+//		 
+//	 }
 	public void handleCollisions() {
 		if (getOneIntersectingObject(Laser.class) != null) {
 			Laser x = getOneIntersectingObject(Laser.class);
-			if (x.isFromPlayer()) {
+			if (x.isFromPlayer()) { 
 				getWorld().remove(x);
 				getWorld().remove(this);
 			}

@@ -114,9 +114,20 @@ public class Spaceship extends Actor {
 		 * the player for that duration.
 		 */
 		if(getOneIntersectingObject(PowerUp.class) != null) {
+			
+			//numbers can be changed, I just did what I thought
+			
 			isPowerUp = true;
-			duration = 200;
-			//not done
+			PowerUp x = getOneIntersectingObject(PowerUp.class);
+			if(x.getState() == 0) {
+				
+			} else if(x.getState() == 1) {
+				duration = 0;
+				lives++;
+			} else if(x.getState() == 2) {
+				duration = 200;
+				speed += 10;
+			}
 		}
 
 	}
