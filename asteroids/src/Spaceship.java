@@ -34,7 +34,7 @@ public class Spaceship extends Actor {
 		handlePowerup();
 		handleAsteroidCollision();
 		handleSpaceshipCollision();
-		
+		handleLaserCollision();
 		updatePosition();
 		
 	}
@@ -72,7 +72,7 @@ public class Spaceship extends Actor {
 		}
 		
 		if (getWorld().isKeyDown(KeyCode.SPACE)) {
-			Laser l = new Laser(getX(), getY(), getRotate() + 180);
+			Laser l = new Laser(getX(), getY(), getRotate() + 180, true);
 			getWorld().add(l);
 		}
 
@@ -132,6 +132,16 @@ public class Spaceship extends Actor {
 		// TODO Auto-generated method stub
 		if(getOneIntersectingObject(Asteroid.class) != null) {
 			lives--;
+		}
+	}
+	
+	public void handleLaserCollision() {
+		if (getOneIntersectingObject(Laser.class) != null) {
+			Laser x = getOneIntersectingObject(Laser.class);
+			if (!x.isFromPlayer()) {
+				getWorld().remove(x);
+				getWorld().remove(this);
+			}
 		}
 	}
 }

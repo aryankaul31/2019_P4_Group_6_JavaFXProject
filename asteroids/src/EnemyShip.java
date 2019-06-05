@@ -58,14 +58,26 @@ public class EnemyShip extends Spaceship {
 		// shoot towards the player
 		Spaceship x = (Spaceship) getWorld().getObjects(Spaceship.class).get(0);
 		double theta = Math.atan2(getY() - x.getY(), getX() - x.getX());
-		Laser l = new Laser(getX(), getY(), Math.toDegrees(theta) + 90);
+		Laser l = new Laser(getX(), getY(), Math.toDegrees(theta) + 90, false);
 		System.out.println("Theta : " + Math.toDegrees(theta));
 		getWorld().add(l);
 	}
 	
 	public void handleCollisions() {
+		if (getOneIntersectingObject(Laser.class) != null) {
+			Laser x = getOneIntersectingObject(Laser.class);
+			if (x.isFromPlayer()) {
+				getWorld().remove(x);
+				getWorld().remove(this);
+			}
+		}
 		
+		if(getOneIntersectingObject(Asteroid.class) != null) {
+			getWorld().remove(this);
+		}
 	}
+	
+	
 
 
 }

@@ -6,8 +6,9 @@ public class Laser extends Actor {
 	double x;
 	double rotation;
 	double totalDistance;
+	boolean fromPlayer;
 	
-	public Laser(double d, double e, double r) {
+	public Laser(double d, double e, double r, boolean fromPlayer) {
 		setImage(new Image("file:Images/laser.png"));
 		setFitWidth(15);
 		setPreserveRatio(true);
@@ -19,6 +20,7 @@ public class Laser extends Actor {
 		this.y = e;
 		this.x = d;
 		rotation = r;
+		this.fromPlayer = fromPlayer;
 	}
 	@Override
 	public void act() {
@@ -38,6 +40,10 @@ public class Laser extends Actor {
 			getWorld().remove(this);
 		}
 		
+	}
+	
+	public boolean isFromPlayer() {
+		return fromPlayer;
 	}
 
 
