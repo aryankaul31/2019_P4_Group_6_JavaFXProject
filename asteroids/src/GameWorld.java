@@ -31,6 +31,7 @@ public class GameWorld extends World {
 		level = 1;
 		
 		spawnRandomAsteroid();
+		
 	}
 	@Override
 	public void act(long now) {

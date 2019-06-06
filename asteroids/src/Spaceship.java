@@ -251,6 +251,6 @@ public class Spaceship extends Actor {
 		}
 		
 		// reset the level cuz u died =(
-		((GameWorld) getWorld()).setLevel(((GameWorld) getWorld()).getLevel());
+		((GameWorld) getWorld()).setLevel(((GameWorld) getWorld()).getLevel() - 1);
 	}
 }
