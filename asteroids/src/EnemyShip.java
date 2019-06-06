@@ -21,7 +21,7 @@ public class EnemyShip extends Spaceship {
 	}
 	
 	@Override
-	public void act() {
+	public void act() {	
 		handleMovement();
 		handleCollisions();
 	}
