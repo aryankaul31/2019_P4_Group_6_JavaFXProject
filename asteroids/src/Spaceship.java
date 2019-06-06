@@ -148,7 +148,7 @@ public class Spaceship extends Actor {
 		// TODO Auto-generated method stub
 		if(getOneIntersectingObject(EnemyShip.class) != null) {
 			lives--;
-			getWorld().remove(getOneIntersectingObject(Asteroid.class));
+			getWorld().remove(getOneIntersectingObject(EnemyShip.class));
 		}
 	}
 	
