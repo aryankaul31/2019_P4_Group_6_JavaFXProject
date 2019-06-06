@@ -49,10 +49,11 @@ public class Game extends Application{
 		ship.setY(400);
 		world.add(ship);
 		
+		
 		for (int i = 0 ; i < 1 ; i ++) {
 			EnemyShip x = new EnemyShip(1, 4);
-			x.setX(100);
-			x.setY(100);
+			x.setX(100 + i*10);
+			x.setY(100 + i*10);
 			world.add(x);
 			
 		}
@@ -91,6 +92,17 @@ public class Game extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		world.requestFocus();
+		
+		
+		for(int i = 0; i < 1; i++) {
+			Random rand = new Random();
+			Asteroid asteroid = new Asteroid(rand.nextInt(2) + 1, rand.nextInt(2) + 1);
+			asteroid.setHealth(100);
+			asteroid.setX(Math.random() * 500);
+			
+			asteroid.setY(Math.random() * 500);
+			world.add(asteroid);
+		}
 	}
 
 }

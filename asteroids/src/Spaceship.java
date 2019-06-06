@@ -19,7 +19,7 @@ public class Spaceship extends Actor {
 		setImage(image);
 		setFitWidth(25);
 		setPreserveRatio(true);
-		
+				
 		lives = h;
 		maxSpeed = max;
 		speed = 0;
@@ -28,6 +28,10 @@ public class Spaceship extends Actor {
 
 	@Override
 	public void act() {
+		//edit the way the game ends, add an explosion if you can
+		if(lives == 0) {
+			System.exit(0);
+		}
 		handleMovement();
 		
 		// handling all types of collisions
@@ -136,6 +140,7 @@ public class Spaceship extends Actor {
 		/* if spaceship runs into an asteroid, loses a life */
 		if(getOneIntersectingObject(Asteroid.class) != null) {
 			lives--;
+			getWorld().remove(getOneIntersectingObject(Asteroid.class));
 		}
 	}
 
@@ -143,6 +148,7 @@ public class Spaceship extends Actor {
 		// TODO Auto-generated method stub
 		if(getOneIntersectingObject(EnemyShip.class) != null) {
 			lives--;
+			getWorld().remove(getOneIntersectingObject(EnemyShip.class));
 		}
 	}
 	

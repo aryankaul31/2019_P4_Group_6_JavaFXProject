@@ -19,5 +19,5 @@ public class GameWorld extends World {
 	public Score getScore() {
 		return score;
 	}
-
+	
 }
