@@ -211,7 +211,7 @@ public class Spaceship extends Actor {
 		
 		lives --;
 		setX(250);
-		setY(400);
+		setY(250);
 		immunity = 20;
 		
 		// wipe the field of asteroids and enemies

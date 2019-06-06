@@ -78,13 +78,14 @@ public class Asteroid extends Actor{
 			Laser x = getOneIntersectingObject(Laser.class);
 			if(x.isFromPlayer()) {
 				setHealth(getHealth()-100);
+				GameWorld.score.setScore(GameWorld.score.getScore() + 25);
 				addExplosion();
 			}
 			getWorld().remove(x);
 		}
 	}
 	
-	private void addExplosion() {
+	public void addExplosion() {
 		Explosions x = new Explosions();
 		x.setX(getX());
 		x.setY(getY());

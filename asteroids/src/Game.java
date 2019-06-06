@@ -56,7 +56,7 @@ public class Game extends Application{
 		root.setTop(hb);
 		Spaceship ship = new Spaceship(5, 3);
 		ship.setX(250);
-		ship.setY(400);
+		ship.setY(250);
 		world.add(ship);
 		hb.setSpacing(100);
 		

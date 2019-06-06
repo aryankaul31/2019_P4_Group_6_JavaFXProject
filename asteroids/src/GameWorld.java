@@ -1,7 +1,7 @@
 
 public class GameWorld extends World {
 
-	private Score score;
+	public static Score score;
 	
 	public GameWorld() {
 		score = new Score();
@@ -13,7 +13,6 @@ public class GameWorld extends World {
 	@Override
 	public void act(long now) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	public Score getScore() {

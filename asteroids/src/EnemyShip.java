@@ -70,6 +70,7 @@ public class EnemyShip extends Spaceship {
 			Laser x = getOneIntersectingObject(Laser.class);
 			if (x.isFromPlayer()) { 
 				getWorld().remove(x);
+				GameWorld.score.setScore(GameWorld.score.getScore() + 50);
 				getWorld().remove(this);
 				
 			}
