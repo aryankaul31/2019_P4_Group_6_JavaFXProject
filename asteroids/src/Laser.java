@@ -51,14 +51,14 @@ public class Laser extends Actor {
 		// add to total distance.
 		// if total distance > a threshhold, then delete this
 		
-		double dx = Math.cos(Math.toRadians(getRotate() + 90)) * 3;
-		double dy = Math.sin(Math.toRadians(getRotate() + 90)) * 3;
+		double dx = Math.cos(Math.toRadians(getRotate() + 90)) * 5;
+		double dy = Math.sin(Math.toRadians(getRotate() + 90)) * 5;
 		
 		setY(getY() + dy);
 		setX(getX() + dx);
 		
 		totalDistance ++;
-		if (totalDistance > 60) {
+		if (totalDistance > 60 ) {
 			getWorld().remove(this);
 		}
 		
