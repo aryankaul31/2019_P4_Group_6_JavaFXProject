@@ -141,7 +141,7 @@ public class Spaceship extends Actor {
 
 	public void handleSpaceshipCollision() {
 		// TODO Auto-generated method stub
-		if(getOneIntersectingObject(Asteroid.class) != null) {
+		if(getOneIntersectingObject(EnemyShip.class) != null) {
 			lives--;
 		}
 	}
