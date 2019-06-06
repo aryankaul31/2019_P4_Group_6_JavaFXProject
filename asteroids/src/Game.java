@@ -48,7 +48,7 @@ public class Game extends Application{
 		world.add(ship);
 		
 		for (int i = 0 ; i < 1 ; i ++) {
-			EnemyShip x = new EnemyShip(3, 5);
+			EnemyShip x = new EnemyShip(1, 4);
 			x.setX(100);
 			x.setY(100);
 			world.add(x);
