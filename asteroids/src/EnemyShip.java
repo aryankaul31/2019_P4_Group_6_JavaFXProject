@@ -16,8 +16,8 @@ public class EnemyShip extends Spaceship {
 		setPreserveRatio(true);
 
 		Random rand = new Random();
-		dx = rand.nextDouble() * 10 - 5;
-		dy = rand.nextDouble() * 10 - 5;
+		dx = rand.nextDouble() * 7 - 3;
+		dy = rand.nextDouble() * 7 - 3;
 	}
 	
 	@Override

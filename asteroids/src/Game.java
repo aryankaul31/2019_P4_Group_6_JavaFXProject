@@ -42,41 +42,22 @@ public class Game extends Application{
 		root.setCenter(world);
 		Scene scene = new Scene(root);
 		HBox hb = new HBox();
-		Label label = new Label("Score: ");
-	    label.setFont(new Font("Arial", 20));
-
-		label.setTextFill(Color.web("#000000"));
-		hb.getChildren().add(label);
-		lives = new Label("Lives Left: ");
+		
+		lives = new Label("Lives: ");
 		
 		lives.setTextFill(Color.web("#000000"));
 	    lives.setFont(new Font("Arial", 20));
 
-		hb.getChildren().add(lives);
+		hb.getChildren().addAll(lives, world.getScore(), world.returnImmunity());
 		root.setTop(hb);
 		Spaceship ship = new Spaceship(5, 3);
 		ship.setX(250);
 		ship.setY(250);
 		world.add(ship);
 		hb.setSpacing(100);
+		hb.setStyle("-fx-background-color: #343d46;");
 		
-//		for (int i = 0 ; i < 1 ; i ++) {
-//			EnemyShip x = new EnemyShip(1, 4);
-//			x.setX(100 + i*10);
-//			x.setY(100 + i*10);
-//			world.add(x);
-//			
-//		}
 		
-		for(int i = 0; i < 2; i++) {
-			Random rand = new Random();
-			Asteroid asteroid = new Asteroid(rand.nextInt(2) + 1, rand.nextInt(2) + 1, 1);
-			asteroid.setHealth(100);
-			asteroid.setX(Math.random() * 500);
-			
-			asteroid.setY(Math.random() * 500);
-			world.add(asteroid);
-		}
 		// TODO Auto-generated method stub
 		world.setOnKeyPressed(new EventHandler<KeyEvent>() {
 

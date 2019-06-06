@@ -6,17 +6,18 @@ public class Asteroid extends Actor{
 	
 	int health;
 	int size;
-	int dx;
-	int dy;
+	double dx;
+	double dy;
 	
-	public Asteroid(int x, int y, int size) {
+	public Asteroid(int size) {
 		Image image = new Image("file:Images/asteroid.png");
 		setImage(image);
 		setPreserveRatio(true);
 		setPickOnBounds(false);
-	
-		dx = x;
-		dy = y;
+
+		Random rand = new Random();
+		dx = rand.nextInt(5) - 2;
+		dy = rand.nextInt(5) - 2;
 		
 		this.health = (4 / size + 1) * 100;
 		/*
@@ -56,8 +57,8 @@ public class Asteroid extends Actor{
 		this.health = health;
 		if (health <= 1) {
 			if (size != 3) {
-				Asteroid one = new Asteroid(dx, dy, size + 1);
-				Asteroid two = new Asteroid(dx, dy, size + 1);
+				Asteroid one = new Asteroid(size + 1);
+				Asteroid two = new Asteroid(size + 1);
 				one.setX(getX() + 15);
 				one.setY(getY() - 15);
 				two.setX(getX() - 15);
@@ -79,9 +80,14 @@ public class Asteroid extends Actor{
 			if(x.isFromPlayer()) {
 				setHealth(getHealth()-100);
 				GameWorld.score.setScore(GameWorld.score.getScore() + 25);
+
 				addExplosion();
 			}
-			getWorld().remove(x);
+			try {
+				getWorld().remove(x);
+			} catch(Exception e) {
+				
+			}
 		}
 	}
 	
@@ -89,7 +95,11 @@ public class Asteroid extends Actor{
 		Explosions x = new Explosions();
 		x.setX(getX());
 		x.setY(getY());
-		getWorld().add(x);
+		try {
+			getWorld().add(x);
+		} catch(Exception e) {
+			
+		}
 	}
 
 }

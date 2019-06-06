@@ -14,6 +14,9 @@ public class Spaceship extends Actor {
 	int steps;
 	boolean canShoot;
 	int immunity;
+	
+	public final int IMMUNITY_TIMER = 100;
+	public final int LASER_COOLDOWN = 15;
 	/*
 	 * This should be subclassed, once for - Player - Enemy Spaceship
 	 */
@@ -33,7 +36,7 @@ public class Spaceship extends Actor {
 		
 		canShoot = true;
 		
-		immunity = 100;
+		immunity = IMMUNITY_TIMER;
 	}
 	
 
@@ -49,9 +52,9 @@ public class Spaceship extends Actor {
 		handleSpaceshipCollision();
 		handleLaserCollision();
 		updatePosition();
-		Game.lives.setText("Lives Left: " + lives);
+		Game.lives.setText("Lives: " + lives);
 		
-		if (immunity > 0) {
+		if (isImmune()) {
 			immunity --;
 		}
 	}
@@ -59,10 +62,10 @@ public class Spaceship extends Actor {
 	public void handleMovement() {
 		// rotation
 		if (getWorld().isKeyDown(KeyCode.LEFT)) {
-			setRotate(getRotate() - 5);
+			setRotate(getRotate() - 7);
 		}
 		if (getWorld().isKeyDown(KeyCode.RIGHT)) {
-			setRotate(getRotate() + 5);
+			setRotate(getRotate() + 7);
 		}
 		if (getRotate() < 0) {
 			setRotate(360 + getRotate());
@@ -90,7 +93,7 @@ public class Spaceship extends Actor {
 		
 		if (!canShoot) {
 			steps ++;
-			if (steps == 10) {
+			if (steps == LASER_COOLDOWN) {
 				canShoot = true;
 				steps = 0;
 			}
@@ -162,11 +165,9 @@ public class Spaceship extends Actor {
 
 	public void handleAsteroidCollision() {
 		/* if spaceship runs into an asteroid, loses a life */
-		if(getOneIntersectingObject(Asteroid.class) != null) {
+		if(getOneIntersectingObject(Asteroid.class) != null && !isImmune()) {
 			addExplosion();
-			if (immunity == 0) {
-				decrementLives();
-			}
+			decrementLives();
 			getWorld().remove(getOneIntersectingObject(Asteroid.class));
 		}
 	}
@@ -182,37 +183,46 @@ public class Spaceship extends Actor {
 	public void handleSpaceshipCollision() {
 		// TODO Auto-generated method stub
 		if(getOneIntersectingObject(EnemyShip.class) != null) {
-			addExplosion();
-			if (immunity == 0) {
+			EnemyShip x = getOneIntersectingObject(EnemyShip.class);
+			if (!isImmune()) {
+				addExplosion();
 				decrementLives();
+				getWorld().remove(x);
 			}
-			getWorld().remove(getOneIntersectingObject(EnemyShip.class));
 		}
 	}
 	
 	public void handleLaserCollision() {
 		if (getOneIntersectingObject(Laser.class) != null) {
 			Laser x = getOneIntersectingObject(Laser.class);
-			if (!x.isFromPlayer()) {
+			if (!x.isFromPlayer() && !isImmune()) {
 				getWorld().remove(x);
 				addExplosion();
-				if (immunity == 0) {
-					decrementLives();
-				}
+				decrementLives();
 			}
 		}
 	}
 	
-	public void decrementLives() {
-		if(lives == 1) {
-			// display error message of some sort here
-			System.exit(0);
+	public boolean isImmune() {
+		if (immunity > 0) {
+			GameWorld.immune.setImmune(true);
+			return true;
 		}
-		
+		GameWorld.immune.setImmune(false);
+		return false;
+	}
+	
+	public void decrementLives() {
 		lives --;
 		setX(250);
 		setY(250);
-		immunity = 20;
+		
+		if(lives == 0) {
+			((GameWorld) getWorld()).gameOver();
+			return;
+		}
+		
+		immunity = IMMUNITY_TIMER;
 		
 		// wipe the field of asteroids and enemies
 		for (Actor x : getWorld().getObjects(Asteroid.class)) {
@@ -222,22 +232,7 @@ public class Spaceship extends Actor {
 			getWorld().remove(x);
 		}
 		
-		// reset with new thingies
-//		for (int i = 0 ; i < 1 ; i ++) {
-//			EnemyShip x = new EnemyShip(1, 4);
-//			x.setX(100 + i*10);
-//			x.setY(100 + i*10);
-//			getWorld().add(x);
-//			
-//		}
-		for(int i = 0; i < 2; i++) {
-			Random rand = new Random();
-			Asteroid asteroid = new Asteroid(rand.nextInt(2) + 1, rand.nextInt(2) + 1, 1);
-			asteroid.setHealth(100);
-			asteroid.setX(Math.random() * 500);
-			
-			asteroid.setY(Math.random() * 500);
-			getWorld().add(asteroid);
-		}
+		// reset the level cuz u died
+		((GameWorld) getWorld()).setLevel(0);
 	}
 }
