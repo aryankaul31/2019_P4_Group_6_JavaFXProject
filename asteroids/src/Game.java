@@ -1,3 +1,5 @@
+import java.util.Random;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -54,7 +56,15 @@ public class Game extends Application{
 			world.add(x);
 			
 		}
-		
+		for(int i = 0; i < 1; i++) {
+			Random rand = new Random();
+			Asteroid asteroid = new Asteroid(rand.nextInt(2) + 1, rand.nextInt(2) + 1);
+			asteroid.setHealth(100);
+			asteroid.setX(Math.random() * 500);
+			
+			asteroid.setY(Math.random() * 500);
+			world.add(asteroid);
+		}
 		// TODO Auto-generated method stub
 		world.setOnKeyPressed(new EventHandler<KeyEvent>() {
 

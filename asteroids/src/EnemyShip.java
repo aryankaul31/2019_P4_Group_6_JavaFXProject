@@ -49,7 +49,7 @@ public class EnemyShip extends Spaceship {
 			setY(1.0);
 		}
 		
-		if (total % 25 == 0) {
+		if (total % 50 == 0) {
 			shoot();
 		}
 	}
