@@ -40,7 +40,7 @@ public class Spaceship extends Actor {
 		handleSpaceshipCollision();
 		handleLaserCollision();
 		updatePosition();
-		
+		Game.lives.setText("Lives Left: " + lives);
 	}
 
 	public void handleMovement() {

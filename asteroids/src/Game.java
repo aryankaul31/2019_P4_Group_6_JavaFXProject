@@ -14,12 +14,14 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Game extends Application{
 	
 	GameWorld world;
-	
+	static Label lives; 
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -41,14 +43,22 @@ public class Game extends Application{
 		Scene scene = new Scene(root);
 		HBox hb = new HBox();
 		Label label = new Label("Score: ");
-		
+	    label.setFont(new Font("Arial", 20));
+
+		label.setTextFill(Color.web("#000000"));
 		hb.getChildren().add(label);
+		lives = new Label("Lives Left: ");
+		
+		lives.setTextFill(Color.web("#000000"));
+	    lives.setFont(new Font("Arial", 20));
+
+		hb.getChildren().add(lives);
 		root.setTop(hb);
 		Spaceship ship = new Spaceship(5, 3);
 		ship.setX(250);
 		ship.setY(400);
 		world.add(ship);
-		
+		hb.setSpacing(100);
 		
 		for (int i = 0 ; i < 1 ; i ++) {
 			EnemyShip x = new EnemyShip(1, 4);
@@ -56,8 +66,8 @@ public class Game extends Application{
 			x.setY(100 + i*10);
 			world.add(x);
 			
-		
-		for(int i = 0; i < 1; i++) {
+		}
+		for(int i = 0; i < 2; i++) {
 			Random rand = new Random();
 			Asteroid asteroid = new Asteroid(rand.nextInt(2) + 1, rand.nextInt(2) + 1);
 			asteroid.setHealth(100);
@@ -94,15 +104,6 @@ public class Game extends Application{
 		world.requestFocus();
 		
 		
-		for(int i = 0; i < 1; i++) {
-			Random rand = new Random();
-			Asteroid asteroid = new Asteroid(rand.nextInt(2) + 1, rand.nextInt(2) + 1);
-			asteroid.setHealth(500);
-			asteroid.setX(Math.random() * 500);
-			
-			asteroid.setY(Math.random() * 500);
-			world.add(asteroid);
-		}
 	}
 
 }
