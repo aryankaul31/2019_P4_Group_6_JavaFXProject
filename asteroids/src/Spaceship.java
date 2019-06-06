@@ -19,7 +19,7 @@ public class Spaceship extends Actor {
 		setImage(image);
 		setFitWidth(25);
 		setPreserveRatio(true);
-		
+				
 		lives = h;
 		maxSpeed = max;
 		speed = 0;
@@ -28,6 +28,10 @@ public class Spaceship extends Actor {
 
 	@Override
 	public void act() {
+		//edit the way the game ends, add an explosion if you can
+		if(lives == 0) {
+			System.exit(0);
+		}
 		handleMovement();
 		
 		// handling all types of collisions

@@ -71,6 +71,7 @@ public class EnemyShip extends Spaceship {
 			if (x.isFromPlayer()) { 
 				getWorld().remove(x);
 				getWorld().remove(this);
+				
 			}
 		}
 	}

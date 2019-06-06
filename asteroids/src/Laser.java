@@ -36,7 +36,7 @@ public class Laser extends Actor {
 		setX(getX() + dx);
 		
 		totalDistance ++;
-		if (totalDistance > 50) {
+		if (totalDistance > 60) {
 			getWorld().remove(this);
 		}
 		
