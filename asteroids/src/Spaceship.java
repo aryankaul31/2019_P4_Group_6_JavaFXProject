@@ -1,3 +1,6 @@
+import java.util.Random;
+
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
@@ -8,7 +11,9 @@ public class Spaceship extends Actor {
 	double speed;
 	boolean isPowerUp;
 	int duration;
-
+	int steps;
+	boolean canShoot;
+	int immunity;
 	/*
 	 * This should be subclassed, once for - Player - Enemy Spaceship
 	 */
@@ -23,15 +28,19 @@ public class Spaceship extends Actor {
 		lives = h;
 		maxSpeed = max;
 		speed = 0;
+		
+		steps = 0;
+		
+		canShoot = true;
+		
+		immunity = 100;
 	}
 	
 
 	@Override
 	public void act() {
 		//edit the way the game ends, add an explosion if you can
-		if(lives == 0) {
-			System.exit(0);
-		}
+		
 		handleMovement();
 		
 		// handling all types of collisions
@@ -41,6 +50,10 @@ public class Spaceship extends Actor {
 		handleLaserCollision();
 		updatePosition();
 		Game.lives.setText("Lives Left: " + lives);
+		
+		if (immunity > 0) {
+			immunity --;
+		}
 	}
 
 	public void handleMovement() {
@@ -75,10 +88,21 @@ public class Spaceship extends Actor {
 			if (speed < 0) speed = 0;
 		}
 		
-		if (getWorld().isKeyDown(KeyCode.SPACE)) {
+		if (!canShoot) {
+			steps ++;
+			if (steps == 10) {
+				canShoot = true;
+				steps = 0;
+			}
+		}
+		
+		if (getWorld().isKeyDown(KeyCode.SPACE) && canShoot) {
 			Laser l = new Laser(getX(), getY(), getRotate() + 180, true);
 			getWorld().add(l);
+			canShoot = false;
 		}
+		
+		
 
 
 	}
@@ -139,15 +163,29 @@ public class Spaceship extends Actor {
 	public void handleAsteroidCollision() {
 		/* if spaceship runs into an asteroid, loses a life */
 		if(getOneIntersectingObject(Asteroid.class) != null) {
-			lives--;
+			addExplosion();
+			if (immunity == 0) {
+				decrementLives();
+			}
 			getWorld().remove(getOneIntersectingObject(Asteroid.class));
 		}
 	}
 
+	private void addExplosion() {
+		Explosions x = new Explosions();
+		getWorld().add(x);
+		x.setX(getX());
+		x.setY(getY());
+	}
+
+
 	public void handleSpaceshipCollision() {
 		// TODO Auto-generated method stub
 		if(getOneIntersectingObject(EnemyShip.class) != null) {
-			lives--;
+			addExplosion();
+			if (immunity == 0) {
+				decrementLives();
+			}
 			getWorld().remove(getOneIntersectingObject(EnemyShip.class));
 		}
 	}
@@ -157,8 +195,49 @@ public class Spaceship extends Actor {
 			Laser x = getOneIntersectingObject(Laser.class);
 			if (!x.isFromPlayer()) {
 				getWorld().remove(x);
-				lives--;
+				addExplosion();
+				if (immunity == 0) {
+					decrementLives();
+				}
 			}
+		}
+	}
+	
+	public void decrementLives() {
+		if(lives == 1) {
+			// display error message of some sort here
+			System.exit(0);
+		}
+		
+		lives --;
+		setX(250);
+		setY(400);
+		immunity = 20;
+		
+		// wipe the field of asteroids and enemies
+		for (Actor x : getWorld().getObjects(Asteroid.class)) {
+			getWorld().remove(x);
+		}
+		for (Actor x : getWorld().getObjects(EnemyShip.class)) {
+			getWorld().remove(x);
+		}
+		
+		// reset with new thingies
+//		for (int i = 0 ; i < 1 ; i ++) {
+//			EnemyShip x = new EnemyShip(1, 4);
+//			x.setX(100 + i*10);
+//			x.setY(100 + i*10);
+//			getWorld().add(x);
+//			
+//		}
+		for(int i = 0; i < 2; i++) {
+			Random rand = new Random();
+			Asteroid asteroid = new Asteroid(rand.nextInt(2) + 1, rand.nextInt(2) + 1, 1);
+			asteroid.setHealth(100);
+			asteroid.setX(Math.random() * 500);
+			
+			asteroid.setY(Math.random() * 500);
+			getWorld().add(asteroid);
 		}
 	}
 }

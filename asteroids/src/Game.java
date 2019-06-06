@@ -60,16 +60,17 @@ public class Game extends Application{
 		world.add(ship);
 		hb.setSpacing(100);
 		
-		for (int i = 0 ; i < 1 ; i ++) {
-			EnemyShip x = new EnemyShip(1, 4);
-			x.setX(100 + i*10);
-			x.setY(100 + i*10);
-			world.add(x);
-			
-		}
+//		for (int i = 0 ; i < 1 ; i ++) {
+//			EnemyShip x = new EnemyShip(1, 4);
+//			x.setX(100 + i*10);
+//			x.setY(100 + i*10);
+//			world.add(x);
+//			
+//		}
+		
 		for(int i = 0; i < 2; i++) {
 			Random rand = new Random();
-			Asteroid asteroid = new Asteroid(rand.nextInt(2) + 1, rand.nextInt(2) + 1);
+			Asteroid asteroid = new Asteroid(rand.nextInt(2) + 1, rand.nextInt(2) + 1, 1);
 			asteroid.setHealth(100);
 			asteroid.setX(Math.random() * 500);
 			
