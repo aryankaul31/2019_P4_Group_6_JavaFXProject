@@ -1,11 +1,21 @@
 import java.util.Random;
 
 import javafx.scene.image.Image;
-
+/**
+ * This class is the enemy ship class that extends actor. It is used to create
+ * an enemy spaceship capable of attacking the player
+ *
+ */
 public class EnemyShip extends Spaceship {
 
 	int total = 0;
+	/**
+	 * Keeps track of change in enemy ship position with respect to y
+	 */
 	double dx;
+	/**
+	 * Keeps track of change in enemy ship position with respect to y
+	 */
 	double dy;
 	public EnemyShip(int h, int max) {
 		super(h, max);

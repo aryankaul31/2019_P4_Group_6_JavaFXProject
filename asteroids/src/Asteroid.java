@@ -1,14 +1,33 @@
 import java.util.Random;
 
 import javafx.scene.image.Image;
-
+/**
+ * This class is the asteroids class that extends actor. It is used
+ * to control an asteroid and describe its movements.
+ *
+ */
 public class Asteroid extends Actor{
-	
+	/**
+	 * Keeps track of asteroid health
+	 */
 	int health;
+	/**
+	 * Keeps track of asteroid size
+	 */
 	int size;
+	/**
+	 * Keeps track of change in asteroid position with respect to x
+	 */
 	double dx;
+	/**
+	 * Keeps track of change in asteroid position with respect to y
+	 */
 	double dy;
 	
+	/**
+	 * This constructor is used to create an asteroid of a certain size
+	 * @param size The initial size of the asteroid
+	 */
 	public Asteroid(int size) {
 		Image image = new Image("file:Images/asteroid.png");
 		setImage(image);
@@ -33,6 +52,10 @@ public class Asteroid extends Actor{
 		
 	}
 
+	/**
+	 * The act method is called extremely frequently and rotates the asteroid
+	 * in order to create a spiraling effect. It also handles collisions.
+	 * */
 	@Override
 	public void act() {
 		move(dx, dy);
@@ -56,6 +79,10 @@ public class Asteroid extends Actor{
 
 	}
 	
+	/**
+	 * Setter method to set health of the asteroid and also creates 2 smaller asteroids
+	 * @param health The health you would like to set the asteroid to
+	 */
 	public void setHealth(int health) {
 		this.health = health;
 		if (health <= 1) {
@@ -73,10 +100,18 @@ public class Asteroid extends Actor{
 		}
 	}
 	
+	/**
+	 * Get method to get health of any given asteroid
+	 * @return The asteroid health
+	 */
 	public int getHealth() {
 		return health;
 	}
 	
+	/**
+	 * Handles collisions for asteroid objects and lowers health/sets score
+	 * based on a player hit. Also handles adding explosions.
+	 */
 	public void handleCollisions() {
 		if(getOneIntersectingObject(Laser.class) != null) {
 			Laser x = getOneIntersectingObject(Laser.class);
@@ -94,6 +129,9 @@ public class Asteroid extends Actor{
 		}
 	}
 	
+	/**
+	 * Adds an explosion to a given x or y location
+	 */
 	public void addExplosion() {
 		Explosions x = new Explosions();
 		x.setX(getX());
