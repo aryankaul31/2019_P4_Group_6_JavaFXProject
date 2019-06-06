@@ -56,7 +56,7 @@ public class Game extends Application{
 			x.setY(100 + i*10);
 			world.add(x);
 			
-		}
+		
 		for(int i = 0; i < 1; i++) {
 			Random rand = new Random();
 			Asteroid asteroid = new Asteroid(rand.nextInt(2) + 1, rand.nextInt(2) + 1);
