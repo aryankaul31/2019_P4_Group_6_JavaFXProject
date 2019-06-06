@@ -151,7 +151,7 @@ public class Spaceship extends Actor {
 			Laser x = getOneIntersectingObject(Laser.class);
 			if (!x.isFromPlayer()) {
 				getWorld().remove(x);
-				getWorld().remove(this);
+				lives--;
 			}
 		}
 	}
