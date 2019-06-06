@@ -89,7 +89,7 @@ public class Game extends Application{
 		for(int i = 0; i < 1; i++) {
 			Random rand = new Random();
 			Asteroid asteroid = new Asteroid(rand.nextInt(2) + 1, rand.nextInt(2) + 1);
-			asteroid.setHealth(100);
+			asteroid.setHealth(500);
 			asteroid.setX(Math.random() * 500);
 			
 			asteroid.setY(Math.random() * 500);

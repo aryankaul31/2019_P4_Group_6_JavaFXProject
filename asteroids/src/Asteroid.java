@@ -1,3 +1,5 @@
+import java.util.Random;
+
 import javafx.scene.image.Image;
 
 public class Asteroid extends Actor{
@@ -36,6 +38,9 @@ public class Asteroid extends Actor{
 		
 		setRotate(getRotate() + 5);
 
+		if(health == 0) {
+			getWorld().remove(this);
+		}
 	}
 	
 	public void setHealth(int health) {
