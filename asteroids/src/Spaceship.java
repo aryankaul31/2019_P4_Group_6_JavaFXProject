@@ -140,6 +140,7 @@ public class Spaceship extends Actor {
 		/* if spaceship runs into an asteroid, loses a life */
 		if(getOneIntersectingObject(Asteroid.class) != null) {
 			lives--;
+			getWorld().remove(getOneIntersectingObject(Asteroid.class));
 		}
 	}
 
@@ -147,6 +148,7 @@ public class Spaceship extends Actor {
 		// TODO Auto-generated method stub
 		if(getOneIntersectingObject(EnemyShip.class) != null) {
 			lives--;
+			getWorld().remove(getOneIntersectingObject(Asteroid.class));
 		}
 	}
 	
