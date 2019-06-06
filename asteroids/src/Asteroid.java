@@ -51,13 +51,11 @@ public class Asteroid extends Actor{
 	
 	public void handleCollisions() {
 		
-		if(getOneIntersectingObject(EnemyShip.class) != null) {
-			this.setHealth(getHealth()-50);
-		}
-		
 		if(getOneIntersectingObject(Laser.class) != null) {
-			this.setHealth(getHealth()-100);
-			getWorld().remove(getOneIntersectingObject(Laser.class));
+			if(getOneIntersectingObject(Laser.class).fromPlayer) {
+				this.setHealth(getHealth()-100);
+				getWorld().remove(getOneIntersectingObject(Laser.class));
+			}
 		}
 		
 		

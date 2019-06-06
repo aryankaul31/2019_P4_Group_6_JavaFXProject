@@ -73,10 +73,6 @@ public class EnemyShip extends Spaceship {
 				getWorld().remove(this);
 			}
 		}
-		
-		if(getOneIntersectingObject(Asteroid.class) != null) {
-			getWorld().remove(this);
-		}
 	}
 	
 	
