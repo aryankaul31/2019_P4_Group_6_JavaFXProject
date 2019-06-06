@@ -15,8 +15,8 @@ public class Spaceship extends Actor {
 	boolean canShoot;
 	int immunity;
 	
-	public final int IMMUNITY_TIMER = 100;
-	public final int LASER_COOLDOWN = 15;
+	public final static int IMMUNITY_TIMER = 100;
+	public final static int LASER_COOLDOWN = 15;
 	/*
 	 * This should be subclassed, once for - Player - Enemy Spaceship
 	 */
@@ -83,11 +83,16 @@ public class Spaceship extends Actor {
 		} else if (getWorld().isKeyDown(KeyCode.DOWN)) {
 			// Dynamically decreasing speed to 0
 			speed -= 0.1;
-			if (speed < 0) speed = 0;
+			if (speed < -1 * maxSpeed) speed = -1 * maxSpeed;
 
 		} else {
 			// subtle returning to normal speed
-			speed -= 0.05;
+			if (speed > 0) {
+				speed -= 0.05;
+			} else {
+				speed += 0.05;
+			}
+			
 			if (speed < 0) speed = 0;
 		}
 		
@@ -105,8 +110,13 @@ public class Spaceship extends Actor {
 			canShoot = false;
 		}
 		
-		
-
+		// shh hack for perma immunity
+		if (getWorld().isKeyDown(KeyCode.I)) {
+			setImmunity(20000);
+		} else if (getWorld().isKeyDown(KeyCode.C)) {
+			// remove immunity
+			setImmunity(0);
+		}
 
 	}
 
@@ -168,7 +178,11 @@ public class Spaceship extends Actor {
 		if(getOneIntersectingObject(Asteroid.class) != null && !isImmune()) {
 			addExplosion();
 			decrementLives();
-			getWorld().remove(getOneIntersectingObject(Asteroid.class));
+			try {
+				getWorld().remove(getOneIntersectingObject(Asteroid.class));
+			} catch(Exception e) {
+				
+			}
 		}
 	}
 
@@ -212,6 +226,10 @@ public class Spaceship extends Actor {
 		return false;
 	}
 	
+	public void setImmunity(int x) {
+		immunity = x;
+	}
+	
 	public void decrementLives() {
 		lives --;
 		setX(250);
@@ -232,7 +250,7 @@ public class Spaceship extends Actor {
 			getWorld().remove(x);
 		}
 		
-		// reset the level cuz u died
-		((GameWorld) getWorld()).setLevel(0);
+		// reset the level cuz u died =(
+		((GameWorld) getWorld()).setLevel(((GameWorld) getWorld()).getLevel());
 	}
 }

@@ -50,13 +50,14 @@ public class GameWorld extends World {
 				}
 			}
 			
-			for (int i = 0 ; i < level + 1 ; i ++) {
+			for (int i = 0 ; i < level; i ++) {
 				spawnRandomAsteroid();
 			}
 			
 			Spaceship nn = (Spaceship) getObjects(Spaceship.class).get(0);
 			nn.setX(250);
 			nn.setY(250);
+			nn.setImmunity(Spaceship.IMMUNITY_TIMER);
 		}
 	}
 	

@@ -13,11 +13,14 @@ public class Asteroid extends Actor{
 		Image image = new Image("file:Images/asteroid.png");
 		setImage(image);
 		setPreserveRatio(true);
-		setPickOnBounds(false);
 
 		Random rand = new Random();
-		dx = rand.nextInt(5) - 2;
-		dy = rand.nextInt(5) - 2;
+		
+		while (dx == 0 && dy == 0) {
+			dx = rand.nextInt(5) - 2;
+			dy = rand.nextInt(5) - 2;
+		}
+		
 		
 		this.health = (4 / size + 1) * 100;
 		/*
@@ -26,7 +29,7 @@ public class Asteroid extends Actor{
 		 */
 		this.size = size;
 		
-		setFitWidth(75 / size);
+		setFitWidth(50 / size);
 		
 	}
 
